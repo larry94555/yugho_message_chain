@@ -23,6 +23,7 @@ The following requests should be supported by all "member nodes"
 2. **Message Chain**: this is a message that can be handled by any node.  It should be possible to specify a start and an end.  Depending on the size of the data, it is up to the node to determine the fee.  For member nodes, the message chain request is free so long as it is small so the free way to get the message chain is to distribute the request.  
 3. **List of Nodes**: this is a request which is free where any node can return a small number of neighbor nodes.  The response time can vary based on the traffic received.  
 4. **Verification**: This is a request to verify when a broadcast occurred
+5. **Latest Message Id***: Query for the latest messageId.  This is a free call.
 
 The data structure possessed by all nodes should consist of the following:
 - Neighbor list (validated with timestamp and ordered by recency)
@@ -39,3 +40,13 @@ The following processes are defined for each node:
 - Fee Management -  initially free until fee management system is in place
 - Request Handling (Actions and Queries)
 
+# Features
+1. **Bootstrap**:  This is used for the first node and for test enviroments.  For testing, it is possigle to have multiple virtual nodes on the same node.  For production, each node must have a unique IP address.
+2. **Node Start Up**: A node starts up, If it is has not yet joined, it will join the network.  If it has joined, it will sync up.  For "verificaiton" or "push", it will sync up completely.  For "pull", it will sync up to a specific message Id.  
+3. **Handle Broadcast Request**: A node receives a broadcast request and submits it to the verification process.
+4. **Broadcast Verification**: If a node supports "verification", it will need to be in "push" mode and it will need be ready to serve as a verifier when selected.
+5. **Handle Query Request**: A node is required to handle a query request
+6. **Report Node**: Handle reports of a node being down or a node operating in an invalid way
+
+# Configuring Node
+- All configuration are done through the yaml file which can be found in configuration.  The yaml files is self-documented.
