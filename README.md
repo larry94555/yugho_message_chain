@@ -1,4 +1,6 @@
 # yugho_message_chain
+
+# Overview
 A simple, decentralized, trustless message system
 
 The message system serves 3 purposes:
